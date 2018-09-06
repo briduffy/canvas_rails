@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-    #localhost:3000
-    root 'course#index'
+  get 'enrollments/index'
+  get 'enrollments/new'
+    root 'courses#index'
 
     resources :users
-    resources :courses
+    resources :courses do
+      resources :enrollments, only: [:index, :new, :create, :destroy]
+  end
 end
